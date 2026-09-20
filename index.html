@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MMA-X Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="game">
+    <h1>🥊 MMA-X</h1>
+    <p>Fighter vs Fighter</p>
+
+    <button id="startBtn">START GAME</button>
+
+    <div id="gameArea">
+
+      <div class="fighters">
+
+        <div class="fighter" id="player">
+          <div class="fighter-icon">🥊</div>
+          <h2>PLAYER</h2>
+
+          <div class="health-bar">
+            <div id="playerHealthBar" class="health-fill"></div>
+          </div>
+
+          <p>Health: <span id="playerHealth">100</span></p>
+        </div>
+
+        <div class="vs">VS</div>
+
+        <div class="fighter" id="opponent">
+          <div class="fighter-icon">🥋</div>
+          <h2>OPPONENT</h2>
+
+          <div class="health-bar">
+            <div id="opponentHealthBar" class="health-fill"></div>
+          </div>
+
+          <p>Health: <span id="opponentHealth">100</span></p>
+        </div>
+
+      </div>
+
+      <div class="controls">
+        <button id="punchBtn">👊 PUNCH</button>
+        <button id="kickBtn">🦵 KICK</button>
+      </div>
+
+      <p id="message">Press START GAME</p>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
