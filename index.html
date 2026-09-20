@@ -1,61 +1,2075 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MMA-X Game</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="MMA X - Ultimate MMA Fighting Game">
+    <meta name="theme-color" content="#090909">
+
+    <title>MMA X — Ultimate Fighting Game</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="game">
-    <h1>🥊 MMA-X</h1>
-    <p>Fighter vs Fighter</p>
+    <!-- =========================================================
+         MMA X
+         Main HTML Structure
+         ========================================================= -->
 
-    <button id="startBtn">START GAME</button>
+    <!-- =========================
+         LOADING SCREEN
+         ========================= -->
 
-    <div id="gameArea">
+    <div id="loading-screen" class="screen loading-screen">
 
-      <div class="fighters">
+        <div class="loading-content">
 
-        <div class="fighter" id="player">
-          <div class="fighter-icon">🥊</div>
-          <h2>PLAYER</h2>
+            <div class="game-logo">
+                <span class="logo-mma">MMA</span>
+                <span class="logo-x">X</span>
+            </div>
 
-          <div class="health-bar">
-            <div id="playerHealthBar" class="health-fill"></div>
-          </div>
+            <p class="loading-text" data-i18n="loading">
+                Loading...
+            </p>
 
-          <p>Health: <span id="playerHealth">100</span></p>
+            <div class="loading-bar">
+                <div id="loading-progress"></div>
+            </div>
+
+            <p class="loading-tip" id="loading-tip">
+                Prepare for battle.
+            </p>
+
         </div>
-
-        <div class="vs">VS</div>
-
-        <div class="fighter" id="opponent">
-          <div class="fighter-icon">🥋</div>
-          <h2>OPPONENT</h2>
-
-          <div class="health-bar">
-            <div id="opponentHealthBar" class="health-fill"></div>
-          </div>
-
-          <p>Health: <span id="opponentHealth">100</span></p>
-        </div>
-
-      </div>
-
-      <div class="controls">
-        <button id="punchBtn">👊 PUNCH</button>
-        <button id="kickBtn">🦵 KICK</button>
-      </div>
-
-      <p id="message">Press START GAME</p>
 
     </div>
-  </div>
 
-  <script src="script.js"></script>
+
+    <!-- =========================
+         LANGUAGE SCREEN
+         ========================= -->
+
+    <section id="language-screen" class="screen language-screen hidden">
+
+        <div class="language-container">
+
+            <div class="game-logo small-logo">
+                <span class="logo-mma">MMA</span>
+                <span class="logo-x">X</span>
+            </div>
+
+            <h1 data-i18n="chooseLanguage">
+                Choose Language
+            </h1>
+
+            <p class="screen-subtitle" data-i18n="selectLanguage">
+                Select your language
+            </p>
+
+            <div class="language-grid">
+
+                <button class="language-card" data-language="uz">
+                    <span class="language-flag">🇺🇿</span>
+                    <span>O‘zbek tili</span>
+                </button>
+
+                <button class="language-card" data-language="en">
+                    <span class="language-flag">🇬🇧</span>
+                    <span>English</span>
+                </button>
+
+                <button class="language-card" data-language="tr">
+                    <span class="language-flag">🇹🇷</span>
+                    <span>Türkçe</span>
+                </button>
+
+                <button class="language-card" data-language="es">
+                    <span class="language-flag">🇪🇸</span>
+                    <span>Español</span>
+                </button>
+
+                <button class="language-card" data-language="ar">
+                    <span class="language-flag">🇸🇦</span>
+                    <span>العربية</span>
+                </button>
+
+                <button class="language-card" data-language="pt-BR">
+                    <span class="language-flag">🇧🇷</span>
+                    <span>Português</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN APPLICATION
+         ========================= -->
+
+    <div id="app" class="app hidden">
+
+        <!-- =========================
+             TOP BAR
+             ========================= -->
+
+        <header class="top-bar">
+
+            <div class="top-left">
+
+                <button
+                    id="menu-logo-button"
+                    class="top-logo"
+                    aria-label="MMA X Home">
+
+                    <span>MMA</span>
+                    <strong>X</strong>
+
+                </button>
+
+            </div>
+
+
+            <div class="top-center">
+
+                <div class="player-mini-profile">
+
+                    <div class="avatar" id="player-avatar">
+                        👤
+                    </div>
+
+                    <div class="player-mini-info">
+
+                        <span
+                            class="player-name"
+                            id="top-player-name">
+                            PLAYER
+                        </span>
+
+                        <div class="level-row">
+
+                            <span data-i18n="level">
+                                LVL
+                            </span>
+
+                            <span id="top-player-level">
+                                1
+                            </span>
+
+                            <div class="mini-xp-bar">
+                                <div id="top-xp-progress"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="top-right">
+
+                <div class="currency-display">
+
+                    <span class="currency-icon">🪙</span>
+
+                    <span id="coin-count">
+                        0
+                    </span>
+
+                </div>
+
+                <button
+                    id="top-settings-button"
+                    class="icon-button"
+                    aria-label="Settings">
+
+                    ⚙️
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             MAIN CONTENT
+             ========================= -->
+
+        <main class="main-content">
+
+
+            <!-- =========================
+                 HOME / MAIN MENU
+                 ========================= -->
+
+            <section
+                id="home-screen"
+                class="game-screen active">
+
+                <div class="home-background">
+
+                    <div class="home-overlay"></div>
+
+                    <div class="home-content">
+
+                        <div class="hero-logo">
+
+                            <span class="hero-mma">
+                                MMA
+                            </span>
+
+                            <span class="hero-x">
+                                X
+                            </span>
+
+                        </div>
+
+                        <p
+                            class="hero-subtitle"
+                            data-i18n="ultimateFightingGame">
+
+                            ULTIMATE FIGHTING GAME
+
+                        </p>
+
+
+                        <div class="main-menu-buttons">
+
+                            <button
+                                id="play-button"
+                                class="main-menu-button primary">
+
+                                <span class="button-icon">
+                                    ▶
+                                </span>
+
+                                <span data-i18n="play">
+                                    PLAY
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                id="tournament-button"
+                                class="main-menu-button">
+
+                                <span class="button-icon">
+                                    🏆
+                                </span>
+
+                                <span data-i18n="tournament">
+                                    TOURNAMENT
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                id="training-button"
+                                class="main-menu-button">
+
+                                <span class="button-icon">
+                                    🥊
+                                </span>
+
+                                <span data-i18n="training">
+                                    TRAINING
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                id="fighters-button"
+                                class="main-menu-button">
+
+                                <span class="button-icon">
+                                    👤
+                                </span>
+
+                                <span data-i18n="fighters">
+                                    FIGHTERS
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                id="shop-button"
+                                class="main-menu-button">
+
+                                <span class="button-icon">
+                                    🛒
+                                </span>
+
+                                <span data-i18n="shop">
+                                    SHOP
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                id="settings-button"
+                                class="main-menu-button">
+
+                                <span class="button-icon">
+                                    ⚙️
+                                </span>
+
+                                <span data-i18n="settings">
+                                    SETTINGS
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 FIGHTER SELECTION
+                 ========================= -->
+
+            <section
+                id="fighter-select-screen"
+                class="game-screen hidden">
+
+                <div class="page-container">
+
+                    <div class="page-header">
+
+                        <button
+                            class="back-button"
+                            data-back="home">
+
+                            ←
+                            <span data-i18n="back">
+                                Back
+                            </span>
+
+                        </button>
+
+                        <div>
+
+                            <h1 data-i18n="chooseFighter">
+                                Choose Fighter
+                            </h1>
+
+                            <p data-i18n="selectYourFighter">
+                                Select your fighter
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="fighter-filter">
+
+                        <button
+                            class="filter-button active"
+                            data-filter="all"
+                            data-i18n="all">
+                            All
+                        </button>
+
+                        <button
+                            class="filter-button"
+                            data-filter="common"
+                            data-i18n="common">
+                            Common
+                        </button>
+
+                        <button
+                            class="filter-button"
+                            data-filter="rare"
+                            data-i18n="rare">
+                            Rare
+                        </button>
+
+                        <button
+                            class="filter-button"
+                            data-filter="epic"
+                            data-i18n="epic">
+                            Epic
+                        </button>
+
+                        <button
+                            class="filter-button"
+                            data-filter="legendary"
+                            data-i18n="legendary">
+                            Legendary
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="fighter-grid"
+                        class="fighter-grid">
+
+                        <!-- Fighters are generated by JavaScript -->
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 FIGHTER DETAILS
+                 ========================= -->
+
+            <section
+                id="fighter-details-screen"
+                class="game-screen hidden">
+
+                <div class="fighter-details-container">
+
+                    <button
+                        class="back-button"
+                        data-back="fighters">
+
+                        ←
+                        <span data-i18n="back">
+                            Back
+                        </span>
+
+                    </button>
+
+
+                    <div class="fighter-details">
+
+                        <div class="fighter-large-preview">
+
+                            <div
+                                id="fighter-large-avatar"
+                                class="fighter-large-avatar">
+
+                                🥊
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="fighter-information">
+
+                            <div class="fighter-rarity"
+                                 id="fighter-rarity">
+                                COMMON
+                            </div>
+
+                            <h1 id="fighter-detail-name">
+                                FIGHTER
+                            </h1>
+
+                            <p id="fighter-detail-style">
+                                MMA
+                            </p>
+
+
+                            <div class="fighter-stats">
+
+                                <div class="stat-row">
+
+                                    <div class="stat-label">
+                                        <span data-i18n="health">
+                                            Health
+                                        </span>
+
+                                        <span id="detail-health-value">
+                                            80
+                                        </span>
+                                    </div>
+
+                                    <div class="stat-bar">
+                                        <div
+                                            id="detail-health-bar"
+                                            class="stat-fill">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="stat-row">
+
+                                    <div class="stat-label">
+                                        <span data-i18n="strength">
+                                            Strength
+                                        </span>
+
+                                        <span id="detail-strength-value">
+                                            80
+                                        </span>
+                                    </div>
+
+                                    <div class="stat-bar">
+                                        <div
+                                            id="detail-strength-bar"
+                                            class="stat-fill">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="stat-row">
+
+                                    <div class="stat-label">
+                                        <span data-i18n="speed">
+                                            Speed
+                                        </span>
+
+                                        <span id="detail-speed-value">
+                                            80
+                                        </span>
+                                    </div>
+
+                                    <div class="stat-bar">
+                                        <div
+                                            id="detail-speed-bar"
+                                            class="stat-fill">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="stat-row">
+
+                                    <div class="stat-label">
+                                        <span data-i18n="defense">
+                                            Defense
+                                        </span>
+
+                                        <span id="detail-defense-value">
+                                            80
+                                        </span>
+                                    </div>
+
+                                    <div class="stat-bar">
+                                        <div
+                                            id="detail-defense-bar"
+                                            class="stat-fill">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="stat-row">
+
+                                    <div class="stat-label">
+                                        <span data-i18n="stamina">
+                                            Stamina
+                                        </span>
+
+                                        <span id="detail-stamina-value">
+                                            80
+                                        </span>
+                                    </div>
+
+                                    <div class="stat-bar">
+                                        <div
+                                            id="detail-stamina-bar"
+                                            class="stat-fill">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                id="select-fighter-button"
+                                class="primary-action-button">
+
+                                <span data-i18n="select">
+                                    SELECT
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 ARENA SELECT
+                 ========================= -->
+
+            <section
+                id="arena-select-screen"
+                class="game-screen hidden">
+
+                <div class="page-container">
+
+                    <div class="page-header">
+
+                        <button
+                            class="back-button"
+                            data-back="fighters">
+
+                            ←
+                            <span data-i18n="back">
+                                Back
+                            </span>
+
+                        </button>
+
+                        <div>
+
+                            <h1 data-i18n="chooseArena">
+                                Choose Arena
+                            </h1>
+
+                            <p data-i18n="selectArena">
+                                Select your battle arena
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="arena-grid"
+                        class="arena-grid">
+
+                        <button
+                            class="arena-card selected"
+                            data-arena="classic">
+
+                            <div class="arena-image">
+                                🏟️
+                            </div>
+
+                            <div class="arena-info">
+
+                                <h3>
+                                    Classic Arena
+                                </h3>
+
+                                <p>
+                                    MMA X Arena
+                                </p>
+
+                            </div>
+
+                        </button>
+
+
+                        <button
+                            class="arena-card locked"
+                            data-arena="night">
+
+                            <div class="arena-image">
+                                🌃
+                            </div>
+
+                            <div class="arena-info">
+
+                                <h3>
+                                    Night Arena
+                                </h3>
+
+                                <p>
+                                    🔒 Level 5
+                                </p>
+
+                            </div>
+
+                        </button>
+
+
+                        <button
+                            class="arena-card locked"
+                            data-arena="champion">
+
+                            <div class="arena-image">
+                                🏆
+                            </div>
+
+                            <div class="arena-info">
+
+                                <h3>
+                                    Champion Arena
+                                </h3>
+
+                                <p>
+                                    🔒 Tournament
+                                </p>
+
+                            </div>
+
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        id="start-fight-button"
+                        class="primary-action-button">
+
+                        ⚔️
+
+                        <span data-i18n="startFight">
+                            START FIGHT
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 FIGHT SCREEN
+                 ========================= -->
+
+            <section
+                id="fight-screen"
+                class="game-screen hidden">
+
+                <div class="fight-arena">
+
+                    <!-- ARENA TOP -->
+
+                    <div class="fight-top-bar">
+
+                        <button
+                            id="fight-menu-button"
+                            class="fight-menu-button">
+                            ☰
+                        </button>
+
+                        <div class="round-info">
+
+                            <span data-i18n="round">
+                                ROUND
+                            </span>
+
+                            <strong id="current-round">
+                                1
+                            </strong>
+
+                        </div>
+
+                        <div
+                            id="fight-timer"
+                            class="fight-timer">
+
+                            03:00
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FIGHTERS -->
+
+                    <div class="fighters-battlefield">
+
+                        <!-- PLAYER -->
+
+                        <div
+                            id="player-fighter"
+                            class="battle-fighter player-fighter">
+
+                            <div class="fighter-nameplate">
+
+                                <span id="battle-player-name">
+                                    PLAYER
+                                </span>
+
+                                <span id="battle-player-level">
+                                    LVL 1
+                                </span>
+
+                            </div>
+
+
+                            <div class="battle-health-container">
+
+                                <div class="health-label">
+
+                                    <span data-i18n="health">
+                                        HP
+                                    </span>
+
+                                    <span id="player-hp-text">
+                                        100 / 100
+                                    </span>
+
+                                </div>
+
+                                <div class="battle-health-bar">
+                                    <div
+                                        id="player-health-bar"
+                                        class="health-fill">
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="battle-stamina-container">
+
+                                <div class="stamina-label">
+                                    STAMINA
+                                </div>
+
+                                <div class="battle-stamina-bar">
+                                    <div
+                                        id="player-stamina-bar"
+                                        class="stamina-fill">
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                id="player-battle-avatar"
+                                class="battle-avatar">
+
+                                🥊
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- VS -->
+
+                        <div class="battle-vs">
+
+                            <div class="vs-text">
+                                VS
+                            </div>
+
+                        </div>
+
+
+                        <!-- ENEMY -->
+
+                        <div
+                            id="enemy-fighter"
+                            class="battle-fighter enemy-fighter">
+
+                            <div class="fighter-nameplate">
+
+                                <span id="battle-enemy-name">
+                                    OPPONENT
+                                </span>
+
+                                <span id="battle-enemy-level">
+                                    LVL 1
+                                </span>
+
+                            </div>
+
+
+                            <div class="battle-health-container">
+
+                                <div class="health-label">
+
+                                    <span data-i18n="health">
+                                        HP
+                                    </span>
+
+                                    <span id="enemy-hp-text">
+                                        100 / 100
+                                    </span>
+
+                                </div>
+
+                                <div class="battle-health-bar enemy-health">
+
+                                    <div
+                                        id="enemy-health-bar"
+                                        class="health-fill">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="battle-stamina-container">
+
+                                <div class="stamina-label">
+                                    STAMINA
+                                </div>
+
+                                <div class="battle-stamina-bar">
+
+                                    <div
+                                        id="enemy-stamina-bar"
+                                        class="stamina-fill">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                id="enemy-battle-avatar"
+                                class="battle-avatar">
+
+                                🥊
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COMBAT LOG -->
+
+                    <div
+                        id="combat-log"
+                        class="combat-log">
+
+                        <p>
+                            Fight started!
+                        </p>
+
+                    </div>
+
+
+                    <!-- PLAYER CONTROLS -->
+
+                    <div class="fight-controls">
+
+                        <div class="attack-controls">
+
+                            <button
+                                id="punch-button"
+                                class="combat-button punch">
+
+                                <span class="combat-icon">
+                                    👊
+                                </span>
+
+                                <span data-i18n="punch">
+                                    PUNCH
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                id="kick-button"
+                                class="combat-button kick">
+
+                                <span class="combat-icon">
+                                    🦵
+                                </span>
+
+                                <span data-i18n="kick">
+                                    KICK
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                id="special-button"
+                                class="combat-button special">
+
+                                <span class="combat-icon">
+                                    ⚡
+                                </span>
+
+                                <span data-i18n="special">
+                                    SPECIAL
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                id="block-button"
+                                class="combat-button block">
+
+                                <span class="combat-icon">
+                                    🛡️
+                                </span>
+
+                                <span data-i18n="block">
+                                    BLOCK
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                id="dodge-button"
+                                class="combat-button dodge">
+
+                                <span class="combat-icon">
+                                    ↔️
+                                </span>
+
+                                <span data-i18n="dodge">
+                                    DODGE
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 TOURNAMENT
+                 ========================= -->
+
+            <section
+                id="tournament-screen"
+                class="game-screen hidden">
+
+                <div class="page-container">
+
+                    <div class="page-header">
+
+                        <button
+                            class="back-button"
+                            data-back="home">
+
+                            ←
+                            <span data-i18n="back">
+                                Back
+                            </span>
+
+                        </button>
+
+                        <div>
+
+                            <h1 data-i18n="tournament">
+                                Tournament
+                            </h1>
+
+                            <p data-i18n="becomeChampion">
+                                Become the champion
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tournament-card">
+
+                        <div class="tournament-header">
+
+                            <div>
+
+                                <span class="tournament-label">
+                                    MMA X
+                                </span>
+
+                                <h2>
+                                    CHAMPIONSHIP
+                                </h2>
+
+                            </div>
+
+                            <div class="trophy">
+                                🏆
+                            </div>
+
+                        </div>
+
+
+                        <div class="bracket">
+
+                            <div class="bracket-round">
+
+                                <h3>
+                                    Quarter Finals
+                                </h3>
+
+                                <div class="bracket-match">
+                                    <span>Fighter 01</span>
+                                    <span>VS</span>
+                                    <span>Fighter 02</span>
+                                </div>
+
+                                <div class="bracket-match">
+                                    <span>Fighter 03</span>
+                                    <span>VS</span>
+                                    <span>Fighter 04</span>
+                                </div>
+
+                                <div class="bracket-match">
+                                    <span>Fighter 05</span>
+                                    <span>VS</span>
+                                    <span>Fighter 06</span>
+                                </div>
+
+                                <div class="bracket-match">
+                                    <span>Fighter 07</span>
+                                    <span>VS</span>
+                                    <span>Fighter 08</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="bracket-round">
+
+                                <h3>
+                                    Semi Finals
+                                </h3>
+
+                                <div class="bracket-match">
+                                    <span>Winner</span>
+                                    <span>VS</span>
+                                    <span>Winner</span>
+                                </div>
+
+                                <div class="bracket-match">
+                                    <span>Winner</span>
+                                    <span>VS</span>
+                                    <span>Winner</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="bracket-round">
+
+                                <h3>
+                                    Final
+                                </h3>
+
+                                <div class="bracket-final">
+
+                                    <span>
+                                        🥊
+                                    </span>
+
+                                    <strong>
+                                        CHAMPION
+                                    </strong>
+
+                                    <span>
+                                        🏆
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            id="tournament-start-button"
+                            class="primary-action-button">
+
+                            🏆
+
+                            <span data-i18n="startTournament">
+                                START TOURNAMENT
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 TRAINING
+                 ========================= -->
+
+            <section
+                id="training-screen"
+                class="game-screen hidden">
+
+                <div class="page-container">
+
+                    <div class="page-header">
+
+                        <button
+                            class="back-button"
+                            data-back="home">
+
+                            ←
+                            <span data-i18n="back">
+                                Back
+                            </span>
+
+                        </button>
+
+                        <div>
+
+                            <h1 data-i18n="training">
+                                Training
+                            </h1>
+
+                            <p data-i18n="improveFighter">
+                                Improve your fighter
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="training-grid">
+
+                        <div
+                            class="training-card"
+                            data-training="strength">
+
+                            <div class="training-icon">
+                                💪
+                            </div>
+
+                            <h2 data-i18n="strength">
+                                Strength
+                            </h2>
+
+                            <p>
+                                +5
+                            </p>
+
+                            <button
+                                class="training-button"
+                                data-i18n="train">
+                                TRAIN
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="training-card"
+                            data-training="speed">
+
+                            <div class="training-icon">
+                                ⚡
+                            </div>
+
+                            <h2 data-i18n="speed">
+                                Speed
+                            </h2>
+
+                            <p>
+                                +5
+                            </p>
+
+                            <button
+                                class="training-button"
+                                data-i18n="train">
+                                TRAIN
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="training-card"
+                            data-training="defense">
+
+                            <div class="training-icon">
+                                🛡️
+                            </div>
+
+                            <h2 data-i18n="defense">
+                                Defense
+                            </h2>
+
+                            <p>
+                                +5
+                            </p>
+
+                            <button
+                                class="training-button"
+                                data-i18n="train">
+                                TRAIN
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="training-card"
+                            data-training="stamina">
+
+                            <div class="training-icon">
+                                🫀
+                            </div>
+
+                            <h2 data-i18n="stamina">
+                                Stamina
+                            </h2>
+
+                            <p>
+                                +5
+                            </p>
+
+                            <button
+                                class="training-button"
+                                data-i18n="train">
+                                TRAIN
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 SHOP
+                 ========================= -->
+
+            <section
+                id="shop-screen"
+                class="game-screen hidden">
+
+                <div class="page-container">
+
+                    <div class="page-header">
+
+                        <button
+                            class="back-button"
+                            data-back="home">
+
+                            ←
+                            <span data-i18n="back">
+                                Back
+                            </span>
+
+                        </button>
+
+                        <div>
+
+                            <h1 data-i18n="shop">
+                                Shop
+                            </h1>
+
+                            <p data-i18n="unlockItems">
+                                Unlock new items
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="shop-tabs">
+
+                        <button
+                            class="shop-tab active"
+                            data-shop-tab="fighters"
+                            data-i18n="fighters">
+                            Fighters
+                        </button>
+
+                        <button
+                            class="shop-tab"
+                            data-shop-tab="arenas"
+                            data-i18n="arenas">
+                            Arenas
+                        </button>
+
+                        <button
+                            class="shop-tab"
+                            data-shop-tab="abilities"
+                            data-i18n="abilities">
+                            Abilities
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="shop-grid"
+                        class="shop-grid">
+
+                        <!-- Shop items generated by JavaScript -->
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 PROFILE
+                 ========================= -->
+
+            <section
+                id="profile-screen"
+                class="game-screen hidden">
+
+                <div class="page-container">
+
+                    <div class="page-header">
+
+                        <button
+                            class="back-button"
+                            data-back="home">
+
+                            ←
+                            <span data-i18n="back">
+                                Back
+                            </span>
+
+                        </button>
+
+                        <div>
+
+                            <h1 data-i18n="profile">
+                                Profile
+                            </h1>
+
+                            <p data-i18n="yourProgress">
+                                Your progress
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-card">
+
+                        <div class="profile-avatar">
+                            👤
+                        </div>
+
+                        <h2 id="profile-player-name">
+                            PLAYER
+                        </h2>
+
+                        <div class="profile-level">
+
+                            <span data-i18n="level">
+                                Level
+                            </span>
+
+                            <strong id="profile-level">
+                                1
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-xp">
+
+                            <div class="xp-header">
+
+                                <span>
+                                    XP
+                                </span>
+
+                                <span id="profile-xp-text">
+                                    0 / 100
+                                </span>
+
+                            </div>
+
+                            <div class="xp-bar">
+                                <div id="profile-xp-fill"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-statistics">
+
+                            <div class="profile-stat">
+
+                                <strong id="profile-wins">
+                                    0
+                                </strong>
+
+                                <span data-i18n="wins">
+                                    Wins
+                                </span>
+
+                            </div>
+
+
+                            <div class="profile-stat">
+
+                                <strong id="profile-losses">
+                                    0
+                                </strong>
+
+                                <span data-i18n="losses">
+                                    Losses
+                                </span>
+
+                            </div>
+
+
+                            <div class="profile-stat">
+
+                                <strong id="profile-fights">
+                                    0
+                                </strong>
+
+                                <span data-i18n="fights">
+                                    Fights
+                                </span>
+
+                            </div>
+
+
+                            <div class="profile-stat">
+
+                                <strong id="profile-winrate">
+                                    0%
+                                </strong>
+
+                                <span data-i18n="winRate">
+                                    Win Rate
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 SETTINGS
+                 ========================= -->
+
+            <section
+                id="settings-screen"
+                class="game-screen hidden">
+
+                <div class="page-container">
+
+                    <div class="page-header">
+
+                        <button
+                            class="back-button"
+                            data-back="home">
+
+                            ←
+                            <span data-i18n="back">
+                                Back
+                            </span>
+
+                        </button>
+
+                        <div>
+
+                            <h1 data-i18n="settings">
+                                Settings
+                            </h1>
+
+                            <p data-i18n="gameSettings">
+                                Game settings
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-list">
+
+
+                        <div class="setting-item">
+
+                            <div class="setting-info">
+
+                                <span class="setting-icon">
+                                    🌍
+                                </span>
+
+                                <div>
+
+                                    <h3 data-i18n="language">
+                                        Language
+                                    </h3>
+
+                                    <p id="current-language">
+                                        O‘zbek tili
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                id="change-language-button"
+                                class="setting-action">
+
+                                Change
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="setting-item">
+
+                            <div class="setting-info">
+
+                                <span class="setting-icon">
+                                    🔊
+                                </span>
+
+                                <div>
+
+                                    <h3 data-i18n="sound">
+                                        Sound
+                                    </h3>
+
+                                    <p data-i18n="soundEffects">
+                                        Sound effects
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="sound-toggle"
+                                    checked>
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="setting-item">
+
+                            <div class="setting-info">
+
+                                <span class="setting-icon">
+                                    🎵
+                                </span>
+
+                                <div>
+
+                                    <h3 data-i18n="music">
+                                        Music
+                                    </h3>
+
+                                    <p data-i18n="backgroundMusic">
+                                        Background music
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="music-toggle"
+                                    checked>
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="setting-item">
+
+                            <div class="setting-info">
+
+                                <span class="setting-icon">
+                                    🎮
+                                </span>
+
+                                <div>
+
+                                    <h3 data-i18n="controls">
+                                        Controls
+                                    </h3>
+
+                                    <p data-i18n="controlSettings">
+                                        Control settings
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                id="controls-button"
+                                class="setting-action">
+
+                                Open
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="setting-item danger-setting">
+
+                            <div class="setting-info">
+
+                                <span class="setting-icon">
+                                    🔄
+                                </span>
+
+                                <div>
+
+                                    <h3 data-i18n="resetProgress">
+                                        Reset Progress
+                                    </h3>
+
+                                    <p data-i18n="resetWarning">
+                                        Delete all game progress
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                id="reset-progress-button"
+                                class="danger-button">
+
+                                Reset
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 GAME RESULT
+                 ========================= -->
+
+            <section
+                id="result-screen"
+                class="game-screen hidden">
+
+                <div class="result-container">
+
+                    <div
+                        id="result-icon"
+                        class="result-icon">
+
+                        🏆
+
+                    </div>
+
+                    <h1
+                        id="result-title"
+                        data-i18n="victory">
+
+                        VICTORY!
+
+                    </h1>
+
+                    <p
+                        id="result-message"
+                        class="result-message">
+
+                        Great fight!
+
+                    </p>
+
+
+                    <div class="result-rewards">
+
+                        <div class="reward">
+
+                            <span>
+                                ⭐
+                            </span>
+
+                            <strong id="reward-xp">
+                                +50 XP
+                            </strong>
+
+                        </div>
+
+
+                        <div class="reward">
+
+                            <span>
+                                🪙
+                            </span>
+
+                            <strong id="reward-coins">
+                                +100
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-buttons">
+
+                        <button
+                            id="rematch-button"
+                            class="primary-action-button">
+
+                            🔄
+
+                            <span data-i18n="rematch">
+                                REMATCH
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            id="result-home-button"
+                            class="secondary-action-button">
+
+                            🏠
+
+                            <span data-i18n="mainMenu">
+                                MAIN MENU
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+        <!-- =========================
+             BOTTOM NAVIGATION
+             ========================= -->
+
+        <nav class="bottom-navigation">
+
+            <button
+                class="bottom-nav-item active"
+                data-nav="home">
+
+                <span>🏠</span>
+                <small data-i18n="home">
+                    Home
+                </small>
+
+            </button>
+
+
+            <button
+                class="bottom-nav-item"
+                data-nav="fighters">
+
+                <span>🥊</span>
+                <small data-i18n="fighters">
+                    Fighters
+                </small>
+
+            </button>
+
+
+            <button
+                class="bottom-nav-item"
+                data-nav="tournament">
+
+                <span>🏆</span>
+                <small data-i18n="tournament">
+                    Tournament
+                </small>
+
+            </button>
+
+
+            <button
+                class="bottom-nav-item"
+                data-nav="shop">
+
+                <span>🛒</span>
+                <small data-i18n="shop">
+                    Shop
+                </small>
+
+            </button>
+
+
+            <button
+                class="bottom-nav-item"
+                data-nav="profile">
+
+                <span>👤</span>
+                <small data-i18n="profile">
+                    Profile
+                </small>
+
+            </button>
+
+        </nav>
+
+    </div>
+
+
+    <!-- =========================
+         MODAL SYSTEM
+         ========================= -->
+
+    <div
+        id="modal-overlay"
+        class="modal-overlay hidden">
+
+        <div
+            id="modal"
+            class="modal">
+
+            <button
+                id="modal-close"
+                class="modal-close">
+
+                ×
+
+            </button>
+
+            <div
+                id="modal-content"
+                class="modal-content">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOAST NOTIFICATION
+         ========================= -->
+
+    <div
+        id="toast-container"
+        class="toast-container">
+
+    </div>
+
+
+    <!-- =========================
+         CONFIRMATION DIALOG
+         ========================= -->
+
+    <div
+        id="confirm-dialog"
+        class="confirm-dialog hidden">
+
+        <div class="confirm-box">
+
+            <div class="confirm-icon">
+                ⚠️
+            </div>
+
+            <h2 id="confirm-title">
+                Are you sure?
+            </h2>
+
+            <p id="confirm-message">
+                This action cannot be undone.
+            </p>
+
+            <div class="confirm-buttons">
+
+                <button
+                    id="confirm-cancel"
+                    class="secondary-action-button">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    id="confirm-ok"
+                    class="danger-button">
+
+                    Confirm
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
+
+    <script src="script.js"></script>
 
 </body>
 </html>
